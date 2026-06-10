@@ -1,0 +1,1033 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GPS-Technology - Professional IT Services</title>
+  <meta name="description" content="GPS-Technology specializes in creating cutting-edge web solutions and providing expert training to help businesses thrive in the digital world.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Fira+Code:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    /* ═══════════════════════════════════════
+       CSS RESET & ROOT VARIABLES
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #6366f1;
+      --primary-dark: #4f46e5;
+      --accent: #00dcd9;
+      --bg: #0f1123;
+      --bg2: #1a1f4e;
+      --text: #f1f5f9;
+      --text-muted: #94a3b8;
+      --white: #ffffff;
+      --card-bg: #ffffff;
+      --card-border: rgba(99,102,241,0.12);
+      --gradient: linear-gradient(135deg, #6366f1, #00dcd9);
+    }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #ffffff;
+      color: #0f1123;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    a { text-decoration: none; color: inherit; }
+    ul { list-style: none; }
+    img { max-width: 100%; display: block; }
+
+    /* ═══════════════════════════════════════
+       UTILITIES
+    ═══════════════════════════════════════ */
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+    .gradient-text {
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 18px;
+      border-radius: 999px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.12), rgba(0,220,217,0.12));
+      color: #6366f1;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      border: 1px solid rgba(99,102,241,0.2);
+      margin-bottom: 16px;
+    }
+
+    /* ═══════════════════════════════════════
+       BUTTONS
+    ═══════════════════════════════════════ */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--gradient);
+      color: #fff;
+      box-shadow: 0 4px 18px rgba(99,102,241,0.35);
+    }
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(99,102,241,0.5);
+    }
+    .btn-outline {
+      background: transparent;
+      color: #6366f1;
+      border: 2px solid rgba(99,102,241,0.4);
+    }
+    .btn-outline:hover {
+      background: rgba(99,102,241,0.06);
+      border-color: #6366f1;
+      transform: translateY(-2px);
+    }
+
+    /* ═══════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════ */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(99,102,241,0.1);
+      transition: box-shadow 0.3s;
+    }
+    .navbar.scrolled {
+      box-shadow: 0 4px 24px rgba(99,102,241,0.1);
+    }
+    .nav-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      height: 68px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.15rem;
+      color: #0f1123;
+    }
+    .nav-logo-icon {
+      width: 38px; height: 38px;
+      border-radius: 10px;
+      background: var(--gradient);
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      font-weight: 900;
+      font-size: 1rem;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .nav-links li a {
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: #374151;
+      padding: 8px 12px;
+      border-radius: 8px;
+      transition: color 0.2s, background 0.2s;
+    }
+    .nav-links li a:hover { color: #6366f1; background: rgba(99,102,241,0.06); }
+    .btn-nav {
+      background: var(--gradient) !important;
+      color: #fff !important;
+      padding: 9px 20px !important;
+      border-radius: 8px !important;
+      box-shadow: 0 4px 14px rgba(99,102,241,0.3);
+    }
+    .btn-nav:hover { opacity: 0.9; background: none; transform: translateY(-1px); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px; height: 2px;
+      background: #374151;
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+    /* Mobile menu */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      top: 68px; left: 0; right: 0;
+      background: rgba(255,255,255,0.97);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(99,102,241,0.1);
+      padding: 16px 24px 24px;
+      flex-direction: column;
+      gap: 4px;
+      z-index: 999;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #374151;
+      padding: 12px 16px;
+      border-radius: 10px;
+      transition: all 0.2s;
+    }
+    .mobile-menu a:hover { color: #6366f1; background: rgba(99,102,241,0.06); }
+
+    /* ═══════════════════════════════════════
+       HERO SECTION
+    ═══════════════════════════════════════ */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 68px;
+      position: relative;
+      overflow: hidden;
+      background: #0f1123;
+    }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+    .hero-orb {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(80px);
+    }
+    .hero-orb-1 {
+      width: 600px; height: 600px;
+      top: -200px; left: -100px;
+      background: radial-gradient(circle, rgba(99,102,241,0.25) 0%, transparent 70%);
+      animation: floatOrb 8s ease-in-out infinite;
+    }
+    .hero-orb-2 {
+      width: 500px; height: 500px;
+      bottom: -150px; right: -100px;
+      background: radial-gradient(circle, rgba(0,220,217,0.2) 0%, transparent 70%);
+      animation: floatOrb 10s ease-in-out infinite reverse;
+    }
+    @keyframes floatOrb {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-30px); }
+    }
+    .hero-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(99,102,241,0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(99,102,241,0.05) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      padding: 80px 0;
+    }
+    .hero-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    /* LEFT */
+    .hero-left { color: #f1f5f9; }
+    .hero-title {
+      font-size: clamp(2rem, 4.5vw, 3.2rem);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+      color: #ffffff;
+    }
+    .hero-rotate-wrap {
+      height: 32px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+    .hero-rotate {
+      font-family: 'Fira Code', monospace;
+      font-size: 1rem;
+      color: var(--accent);
+      font-weight: 600;
+      transition: opacity 0.3s ease;
+    }
+    .hero-desc {
+      font-size: 1rem;
+      color: #94a3b8;
+      line-height: 1.75;
+      max-width: 500px;
+      margin-bottom: 32px;
+    }
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 40px;
+    }
+    .hero-actions .btn-outline {
+      color: #e2e8f0;
+      border-color: rgba(255,255,255,0.2);
+    }
+    .hero-actions .btn-outline:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.4);
+    }
+    .hero-stats {
+      display: flex;
+      gap: 36px;
+      flex-wrap: wrap;
+      padding: 24px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 20px;
+    }
+    .hero-stat-value {
+      display: block;
+      font-size: 1.8rem;
+      font-weight: 800;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-stat-label {
+      display: block;
+      font-size: 0.78rem;
+      color: #64748b;
+      font-weight: 500;
+      margin-top: 2px;
+    }
+    .hero-trust {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .hero-trust span {
+      font-size: 0.78rem;
+      color: #64748b;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* RIGHT CODE BLOCK */
+    .hero-right { position: relative; }
+    .code-block {
+      position: relative;
+      background: rgba(15,17,35,0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 16px;
+      overflow: visible;
+      box-shadow: 0 30px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(99,102,241,0.1);
+      backdrop-filter: blur(20px);
+    }
+    .code-block-header {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 14px 18px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.02);
+      border-radius: 16px 16px 0 0;
+    }
+    .dot { width:12px; height:12px; border-radius:50%; display:inline-block; }
+    .dot.red    { background:#ff5f57; }
+    .dot.yellow { background:#ffbd2e; }
+    .dot.green  { background:#28c840; }
+    .code-filename {
+      margin-left: 8px;
+      font-size: 0.75rem;
+      color: #4b5563;
+      font-family: 'Fira Code', monospace;
+    }
+    .code-body {
+      padding: 22px 24px;
+      font-family: 'Fira Code', 'Cascadia Code', monospace;
+      font-size: 0.8rem;
+      line-height: 1.9;
+    }
+    .c-keyword  { color: #c792ea; }
+    .c-var      { color: #82aaff; }
+    .c-op       { color: #89ddff; }
+    .c-brace    { color: #c792ea; }
+    .c-key      { color: #f07178; }
+    .c-str      { color: #c3e88d; }
+    .c-accent   { color: #ffcb6b; }
+    .c-comment  { color: #546e7a; font-style: italic; margin-top: 8px; display: block; }
+    .code-badge {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(10,12,30,0.96);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 12px;
+      padding: 10px 16px;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.5);
+      backdrop-filter: blur(10px);
+      white-space: nowrap;
+    }
+    .code-badge-top    { top: -18px; right: -18px; }
+    .code-badge-bottom { bottom: -18px; left: -18px; }
+    .badge-dot {
+      width: 10px; height: 10px; border-radius: 50%;
+      background: #28c840;
+      box-shadow: 0 0 8px #28c840;
+      animation: pulse 2s infinite;
+    }
+    .badge-icon { font-size: 1.1rem; }
+    .badge-label { font-size: 0.62rem; color: #4b5563; }
+    .badge-value { font-size: 0.82rem; font-weight: 700; }
+    .green-text { color: #28c840; }
+    .blue-text  { color: #82aaff; }
+    @keyframes pulse {
+      0%,100% { opacity:1; box-shadow: 0 0 8px #28c840; }
+      50% { opacity:0.5; box-shadow: 0 0 4px #28c840; }
+    }
+
+    /* ═══════════════════════════════════════
+       SERVICES SECTION
+    ═══════════════════════════════════════ */
+    .services-preview {
+      padding: 100px 0;
+      background: linear-gradient(180deg, #f8faff 0%, #f1f4ff 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .services-preview::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(99,102,241,0.05) 0%, transparent 50%),
+        radial-gradient(circle at 80% 80%, rgba(0,220,217,0.05) 0%, transparent 50%);
+      pointer-events: none;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+    .section-title {
+      font-size: clamp(1.9rem, 4vw, 2.8rem);
+      font-weight: 800;
+      color: #0f1123;
+      margin-bottom: 12px;
+      line-height: 1.2;
+    }
+    .section-subtitle {
+      font-size: 1rem;
+      color: #6b7280;
+      max-width: 540px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+    .services-grid-new {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 56px;
+    }
+    .svc-card {
+      position: relative;
+      background: #ffffff;
+      border: 1px solid rgba(99,102,241,0.1);
+      border-radius: 20px;
+      padding: 32px 28px;
+      transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+      overflow: hidden;
+    }
+    .svc-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 24px 64px rgba(99,102,241,0.13);
+      border-color: rgba(99,102,241,0.3);
+    }
+    .svc-glow {
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 160px; height: 160px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(99,102,241,0.15), transparent 70%);
+      opacity: 0;
+      transition: opacity 0.4s ease;
+      pointer-events: none;
+    }
+    .svc-card:hover .svc-glow { opacity: 1; }
+    .svc-icon-wrap {
+      width: 56px; height: 56px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #eef2ff, #e0f7fa);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+    .svc-card:hover .svc-icon-wrap { transform: scale(1.1) rotate(-3deg); }
+    .svc-icon { font-size: 1.6rem; }
+    .svc-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #0f1123;
+      margin-bottom: 10px;
+    }
+    .svc-desc {
+      font-size: 0.88rem;
+      color: #6b7280;
+      line-height: 1.7;
+      margin-bottom: 18px;
+    }
+    .svc-tags {
+      list-style: none;
+      padding: 0;
+      margin: 0 0 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .svc-tags li {
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 6px;
+      background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(0,220,217,0.08));
+      color: #6366f1;
+      border: 1px solid rgba(99,102,241,0.15);
+    }
+    .svc-link {
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #6366f1;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: gap 0.2s ease, color 0.2s ease;
+    }
+    .svc-link:hover { gap: 8px; color: #4f46e5; }
+    .svc-cta-wrap {
+      text-align: center;
+      padding: 44px 40px;
+      background: linear-gradient(135deg, #0f1123, #1a1f4e);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.06);
+      position: relative;
+      overflow: hidden;
+    }
+    .svc-cta-wrap::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 20% 50%, rgba(99,102,241,0.2) 0%, transparent 60%),
+        radial-gradient(circle at 80% 50%, rgba(0,220,217,0.12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .svc-cta-text {
+      font-size: 1.2rem;
+      color: #e5e7eb;
+      margin-bottom: 24px;
+      position: relative;
+    }
+    .svc-cta-text strong { color: #ffffff; }
+    .svc-cta-btns {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      position: relative;
+    }
+    .svc-cta-btns .btn-outline {
+      color: #e2e8f0;
+      border-color: rgba(255,255,255,0.2);
+    }
+    .svc-cta-btns .btn-outline:hover {
+      background: rgba(255,255,255,0.06);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    .footer {
+      background: #0a0c1e;
+      padding: 72px 0 0;
+      color: #94a3b8;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1.5fr;
+      gap: 40px;
+      margin-bottom: 56px;
+    }
+    .footer-brand-name {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+    .footer-brand p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      margin-bottom: 24px;
+      max-width: 280px;
+    }
+    .footer-social {
+      display: flex;
+      gap: 10px;
+    }
+    .footer-social a {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      transition: all 0.2s;
+    }
+    .footer-social a:hover {
+      background: rgba(99,102,241,0.2);
+      border-color: rgba(99,102,241,0.4);
+      color: #6366f1;
+      transform: translateY(-2px);
+    }
+    .footer-col h4 {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 20px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-col ul li {
+      margin-bottom: 10px;
+    }
+    .footer-col ul li a {
+      font-size: 0.85rem;
+      color: #64748b;
+      transition: color 0.2s;
+    }
+    .footer-col ul li a:hover { color: #6366f1; }
+    .footer-contact li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .footer-contact li span:first-child {
+      font-size: 0.9rem;
+      margin-top: 1px;
+    }
+    .footer-contact li span:last-child {
+      font-size: 0.85rem;
+      color: #64748b;
+    }
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.06);
+      padding: 24px 0;
+      text-align: center;
+    }
+    .footer-bottom p:first-child {
+      font-size: 0.85rem;
+      color: #475569;
+      margin-bottom: 6px;
+    }
+    .footer-bottom p:last-child {
+      font-size: 0.75rem;
+      color: #374151;
+    }
+
+    /* ═══════════════════════════════════════
+       WHATSAPP BUTTON
+    ═══════════════════════════════════════ */
+    .whatsapp-btn {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 56px; height: 56px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #25d366, #128c7e);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 6px 24px rgba(37,211,102,0.4);
+      z-index: 900;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+      animation: waBounce 3s ease-in-out infinite;
+    }
+    .whatsapp-btn:hover {
+      transform: scale(1.1) translateY(-2px);
+      box-shadow: 0 10px 32px rgba(37,211,102,0.55);
+    }
+    @keyframes waBounce {
+      0%,100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    /* ═══════════════════════════════════════
+       SCROLL ANIMATIONS
+    ═══════════════════════════════════════ */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+      transition-delay: var(--delay, 0ms);
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .services-grid-new { grid-template-columns: repeat(2, 1fr); }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 900px) {
+      .hero-two-col { grid-template-columns: 1fr; }
+      .hero-right { display: none; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr; gap: 32px; }
+      .hero-title { font-size: 1.9rem; }
+      .hero-actions { flex-direction: column; }
+      .hero-actions .btn { width: 100%; justify-content: center; }
+      .hero-stats { gap: 20px; }
+    }
+    @media (max-width: 600px) {
+      .services-grid-new { grid-template-columns: 1fr; }
+      .svc-cta-wrap { padding: 32px 20px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <div class="nav-container">
+    <a href="index.html" class="nav-logo">
+      <img src="gps_logo.png" alt="GPS Logo" style="width:38px;height:38px;border-radius:10px;object-fit:cover;">
+      <span>GPS-Technology</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="contact.html" class="btn-nav">Contact</a></li>
+    </ul>
+    <div class="hamburger" id="hamburger">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html">Home</a>
+  <a href="about.html">About Us</a>
+  <a href="services.html">Services</a>
+  <a href="courses.html">Courses</a>
+  <a href="projects.html">Projects</a>
+  <a href="contact.html">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg">
+    <div class="hero-orb hero-orb-1"></div>
+    <div class="hero-orb hero-orb-2"></div>
+    <div class="hero-grid"></div>
+  </div>
+  <div class="container">
+    <div class="hero-content hero-two-col">
+
+      <!-- LEFT -->
+      <div class="hero-left">
+        <div class="badge">🚀 Next-Gen IT Technology</div>
+        <h1 class="hero-title">
+          We Code the Digital World of Tomorrow —<br>
+          <span class="gradient-text">Dreams into Reality</span>
+        </h1>
+        <div class="hero-rotate-wrap">
+          <span class="hero-rotate" id="heroRotate">&lt; Precision Engineering /&gt;</span>
+        </div>
+        <p class="hero-desc">
+          GPS — Global Programming Software Technology. We don't just write code, we architect futures. From powerful web platforms to intelligent cloud systems, our precision-built solutions help businesses navigate and dominate the digital world.
+        </p>
+        <div class="hero-actions">
+          <a href="projects.html" class="btn btn-primary">🚀 Launch Your Project →</a>
+          <a href="contact.html" class="btn btn-outline">📂 Explore Our Work</a>
+        </div>
+        <div class="hero-stats">
+          <div>
+            <span class="hero-stat-value">10+</span>
+            <span class="hero-stat-label">Projects Delivered</span>
+          </div>
+          <div>
+            <span class="hero-stat-value">9+</span>
+            <span class="hero-stat-label">Happy Clients</span>
+          </div>
+          <div>
+            <span class="hero-stat-value">99.9%</span>
+            <span class="hero-stat-label">Satisfaction Rate</span>
+          </div>
+        </div>
+        <div class="hero-trust">
+          <span>🛡️ Secure by Design</span>
+          <span>☁️ Cloud Native</span>
+          <span>⚙️ Agile Built</span>
+        </div>
+      </div>
+
+      <!-- RIGHT CODE BLOCK -->
+      <div class="hero-right">
+        <div class="code-block">
+          <div class="code-block-header">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="code-filename">gps.ts</span>
+          </div>
+          <div class="code-body">
+            <div><span class="c-keyword">const</span> <span class="c-var">GPS</span> <span class="c-op">=</span> <span class="c-brace">{</span></div>
+            <div>&nbsp;&nbsp;<span class="c-key">fullName:</span> <span class="c-str">"Global Programming Software Technology"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="c-key">tagline:</span> <span class="c-str">"Precision · Navigation · Innovation"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="c-key">mission:</span> <span class="c-str">"We Code the World of Tomorrow"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="c-key">core:</span> <span class="c-brace">[</span></div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"⚡ Blazing Fast Web Apps"</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"☁️ Cloud Architecture"</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"📱 Mobile Solutions"</span>,</div>
+            <div>&nbsp;&nbsp;&nbsp;&nbsp;<span class="c-str">"🤖 AI &amp; Machine Learning"</span>,</div>
+            <div>&nbsp;&nbsp;<span class="c-brace">]</span>,</div>
+            <div>&nbsp;&nbsp;<span class="c-key">promise:</span> <span class="c-accent">"Enterprise Grade · Always"</span></div>
+            <div><span class="c-brace">}</span>;</div>
+            <span class="c-comment">// Your Vision + Our Code = 🚀</span>
+            <div><span class="c-keyword">export default</span> <span class="c-var">GPS</span>;</div>
+          </div>
+          <div class="code-badge code-badge-top">
+            <span class="badge-dot"></span>
+            <div>
+              <div class="badge-label">Build Status</div>
+              <div class="badge-value green-text">Deployed ✅</div>
+            </div>
+          </div>
+          <div class="code-badge code-badge-bottom">
+            <span class="badge-icon">⚡</span>
+            <div>
+              <div class="badge-label">Uptime</div>
+              <div class="badge-value blue-text">99.99%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES SECTION -->
+<section class="services-preview">
+  <div class="container">
+    <div class="section-header">
+      <div class="badge">✦ What We Do</div>
+      <h2 class="section-title">Our <span class="gradient-text">Core Services</span></h2>
+      <p class="section-subtitle">From idea to deployment — we build digital products that perform, scale, and impress.</p>
+    </div>
+
+    <div class="services-grid-new">
+      <!-- Card 1 -->
+      <div class="svc-card fade-up" style="--delay:0ms">
+        <div class="svc-glow"></div>
+        <div class="svc-icon-wrap"><span class="svc-icon">🌐</span></div>
+        <h3 class="svc-title">Web Development</h3>
+        <p class="svc-desc">Custom websites and web applications built with modern technologies for optimal performance and user experience.</p>
+        <ul class="svc-tags">
+          <li>React / Next.js</li>
+          <li>Node.js</li>
+          <li>REST API</li>
+        </ul>
+        <a href="services.html" class="svc-link">Learn More →</a>
+      </div>
+      <!-- Card 2 -->
+      <div class="svc-card fade-up" style="--delay:100ms">
+        <div class="svc-glow"></div>
+        <div class="svc-icon-wrap"><span class="svc-icon">🛒</span></div>
+        <h3 class="svc-title">E-Commerce Solutions</h3>
+        <p class="svc-desc">Complete online store development with secure payment integration and inventory management systems.</p>
+        <ul class="svc-tags">
+          <li>Payment Gateway</li>
+          <li>Inventory</li>
+          <li>Analytics</li>
+        </ul>
+        <a href="services.html" class="svc-link">Learn More →</a>
+      </div>
+      <!-- Card 3 -->
+      <div class="svc-card fade-up" style="--delay:200ms">
+        <div class="svc-glow"></div>
+        <div class="svc-icon-wrap"><span class="svc-icon">🎓</span></div>
+        <h3 class="svc-title">IT Training</h3>
+        <p class="svc-desc">Professional courses in web development, full stack development, and modern programming technologies.</p>
+        <ul class="svc-tags">
+          <li>Full Stack</li>
+          <li>Frontend</li>
+          <li>Live Projects</li>
+        </ul>
+        <a href="services.html" class="svc-link">Learn More →</a>
+      </div>
+    <div class="svc-cta-wrap">
+      <p class="svc-cta-text">Need a custom solution? <strong>Let's talk.</strong></p>
+      <div class="svc-cta-btns">
+        <a href="services.html" class="btn btn-primary">View All Services →</a>
+        <a href="contact.html" class="btn btn-outline">Get Free Quote</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-brand-name">GPS-Technology</div>
+        <p>Transforming digital dreams into reality with cutting-edge web solutions and expert training.</p>
+        <div class="footer-social">
+          <a href="https://facebook.com" target="_blank" title="Facebook">f</a>
+          <a href="https://twitter.com" target="_blank" title="Twitter">𝕏</a>
+          <a href="https://linkedin.com" target="_blank" title="LinkedIn">in</a>
+          <a href="https://youtube.com" target="_blank" title="YouTube">▶</a>
+          <a href="https://instagram.com" target="_blank" title="Instagram">📷</a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="services.html">Services</a></li>
+          <li><a href="courses.html">Courses</a></li>
+          <li><a href="projects.html">Projects</a></li>
+          <li><a href="team.html">Team</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="services.html">Web Development</a></li>
+          <li><a href="services.html">E-Commerce</a></li>
+          <li><a href="services.html">Fullstack Development</a></li>
+          <li><a href="services.html">Digital Marketing</a></li>
+          <li><a href="services.html">Frontend Development</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contact Info</h4>
+        <ul class="footer-contact">
+          <li><span>✉</span><span>gpstechnologyss@gmail.com</span></li>
+          <li><span>📞</span><span>+91 9342338619</span></li>
+          <li><span>📍</span><span>Uthangarai, Krishnagiri</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2026 GPS-Technology. All rights reserved. | Designed with Excellence</p>
+      <p>Built with ❤️ by GPS Team</p>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP BUTTON -->
+<a href="https://wa.me/919342338619?text=Hello!%20I'm%20interested%20in%20your%20services."
+   target="_blank" class="whatsapp-btn" title="Chat on WhatsApp">💬</a>
+
+<script>
+  // ── Navbar scroll shadow
+  const navbar = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    navbar.classList.toggle('scrolled', window.scrollY > 20);
+  });
+
+  // ── Hamburger toggle
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    mobileMenu.classList.toggle('open');
+  });
+  // Close mobile menu on link click
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  // ── Rotating hero tagline
+  const lines = [
+    '< Precision Engineering />',
+    '< Global Scale Solutions />',
+    '< Innovation at Every Line />',
+    '< Software That Navigates />',
+    '< Technology Without Limits />'
+  ];
+  let idx = 0;
+  const el = document.getElementById('heroRotate');
+  if (el) {
+    el.style.transition = 'opacity 0.3s ease';
+    setInterval(() => {
+      el.style.opacity = '0';
+      setTimeout(() => {
+        idx = (idx + 1) % lines.length;
+        el.textContent = lines[idx];
+        el.style.opacity = '1';
+      }, 300);
+    }, 3000);
+  }
+
+  // ── Scroll fade-up animation
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
